@@ -1,19 +1,33 @@
-﻿class Program
+﻿class Program1
 {
-    static void Main()
+    static int Ackermann(int m, int n)
     {
-        int M = 2;
-        int N = 7;
-        
-        PrintNumbersInRange(M, N);
-    }
-
-    static void PrintNumbersInRange(int m, int n)
-    {
-        if (m <= n)
+        if (m == 0)
         {
-            Console.WriteLine(m);
-            PrintNumbersInRange(m + 1, n);
+            return n + 1;
+        }
+        else if (n == 0)
+        {
+            return Ackermann(m - 1, 1);
+        }
+        else
+        {
+            return Ackermann(m - 1, Ackermann(m, n - 1));
         }
     }
+
+    static void Main()
+    {
+        Console.WriteLine("Enter two non-negative integers m and n:");
+        int m = int.Parse(Console.ReadLine());
+        int n = int.Parse(Console.ReadLine());
+
+        int result = Ackermann(m, n);
+        Console.WriteLine("Ackermann(" + m + "," + n + ") = " + result);
+    }
 }
+
+
+
+
+
